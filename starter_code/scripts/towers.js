@@ -1,21 +1,26 @@
 class Towers {
-    constructor(game) {
-      this.height = game.height;
-      this.width = game.width;
-      this.context = game.context;
-      this.x = 0;
-      this.size = 32;
-    }
+  constructor(game) {
+    this.game = game;
+    this.height = game.height;
+    this.width = game.width;
+    this.context = game.context;
+    this.radius = 60;
+    this.x = 0;
+    this.size = 32;
+  }
 
-/*     update() {
-      this.x += this.vx;
-    } */
+  checkIfInLineOfSight(mob) {
+    // Compare position between this tower and mob
+    if (mob.x >= -this.radius || mob.x <= this.radius) {
+    }
+    s;
+  }
 }
 
 class MageTower extends Towers {
   constructor(game) {
-    super (game);
-    this.damage = 3;
+    super(game);
+    this.damage = 1.3;
     this.mageTower = new Image();
     this.mageTower.src = './images/towers/towers.png';
   }
@@ -23,21 +28,25 @@ class MageTower extends Towers {
   draw() {
     this.context.drawImage(this.mageTower, 0, 0, 41, 70, 180, 55, 41, 70);
   }
-  
+
   towerDamage() {
-      this.game.bat.health -= this.damage
+    this.game.bat.health -= this.damage;
   }
 }
 
 class CannonTower extends Towers {
-    constructor (game) {
-        super (game);
-            this.damage = 10
-            this.cannonTower = new Image();
-            this.cannonTower.src = './images/towers/towers.png'
-        }
+  constructor(game) {
+    super(game);
+    this.damage = 1.3;
+    this.cannonTower = new Image();
+    this.cannonTower.src = './images/towers/towers.png';
+  }
 
-    draw() {
-        this.context.drawImage(this.cannonTower, 164, 70, 41, 70, 370, 210, 41, 70);
-    }
+  draw() {
+    this.context.drawImage(this.cannonTower, 164, 70, 41, 70, 370, 210, 41, 70);
+  }
+
+  towerDamage() {
+    this.game.bat.health -= this.damage;
+  }
 }

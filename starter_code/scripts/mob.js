@@ -1,51 +1,87 @@
 class Mob {
-    constructor(game) {
-      this.height = game.height;
-      this.width = game.width;
-      this.context = game.context;
-      this.x = 0;
-      this.vx = 1;
-      this.size = 32;
-    }
+  constructor(game) {
+    this.game = game;
+    this.height = game.height;
+    this.width = game.width;
+    this.context = game.context;
+    this.x = 0;
+    this.vx = 1;
+    this.size = 44;
+  }
 
-/*     update() {
-      this.x += this.vx;
-    } */
+  /*     update() {
+        this.x += this.vx;
+      } */
 }
 
 class Bat extends Mob {
   constructor(game) {
-    super (game);
+    super(game);
     this.health = 100;
+    this.dead = false;
     this.speed;
-    this.img = new Image();
-    this.img.src = './images/bat/bat_right.png';
+    this.y = this.getRandom(128, 224);
+    this.bat = new Image();
+    this.bat.src = './images/bat/bat_right.png';
+  }
+
+  getRandom(min, max) {
+    return Math.floor(Math.random() * (max - min + 1)) + min;
   }
 
   draw() {
-    this.context.drawImage(this.img, 0, 0, 44, 44, this.x, 150, this.size, this.size);
+    this.context.drawImage(
+      this.bat,
+      0,
+      0,
+      44,
+      44,
+      this.x,
+      this.y,
+      this.size,
+      this.size
+    );
   }
 
-/*   life() {
-    this.health = 100;
-  } */
-
-  damageTaken(damage) {
-    if (this.health > 0) {
-      this.health -= damage
-    } else if (this.health <= 0) {
-      this.death();
+  damageTaken(x, health, damage) {
+    //setInterval(function() {
+    // console.log(x, health, damage)
+    this.health -= damage;
+    if (this.health <= 0) {
+      this.drawDeath();
+      //} else if (x > 260) {
+      //   clearInterval();
     }
+    //}, 500);
   }
 
-  death() {
-    console.log('dead')
-      //animation of death
-    }
-  
+  drawDeath() {
+    this.context.drawImage(
+      this.bat,
+      176,
+      0,
+      44,
+      44,
+      this.x,
+      this.y,
+      this.size,
+      this.size
+    );
+    this.vx *= 0;
+  }
+
+  die() {
+    this.dead = true;
+
+    setTimeout(() => {
+      const batArray = this.game.bats;
+      const bat = this;
+      const index = batArray.indexOf(bat);
+      batArray.splice(index, 1);
+    }, 500);
+  }
+
   update() {
-    //console.log(this.x)
-    this.x += this.vx
+    this.x += this.vx;
   }
 }
-      

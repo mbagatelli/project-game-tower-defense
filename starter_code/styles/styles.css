@@ -1,5 +1,6 @@
-html, body {
-    height: 100%;
+html,
+body {
+  height: 100%;
 }
 
 body {
@@ -9,9 +10,9 @@ body {
   background: lightgray;
 }
 
-canvas {
+/* canvas {
   border: 1px solid red;
-}
+} */
 
 body.game-playing button {
   display: none;
@@ -22,8 +23,8 @@ body.game-paused canvas {
 }
 
 body.game-playing canvas {
-    display: initial;
-  }
+  display: initial;
+}
 
 button {
   font: inherit;
