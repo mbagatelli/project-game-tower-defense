@@ -4,6 +4,7 @@ class Game {
     this.context = this.$canvas.getContext('2d');
     this.width = $canvas.width;
     this.height = $canvas.height;
+    this.towerbuilder = new TowerBuilder(this);
     this.background = new Background(this);
     this.mob = new Mob(this);
     //this.bat = new Bat(this);
@@ -30,22 +31,28 @@ class Game {
     window.requestAnimationFrame(timestamp => this.animation(timestamp));
   }
 
+  /*   waveStarted() {
+    for (let i = 0; i < this.bats.length; i++) {
+      this.bats[i].draw();
+    }
+  } */
+
   drawEverything() {
     //this.clear ();
     this.background.paintMap();
     for (let i = 0; i < this.bats.length; i++) {
       this.bats[i].draw();
     }
-
-    this.mageTower.draw();
-    this.cannonTower.draw();
-    //make width for attack
-    /*       this.context.fillStyle = 'red';
-      this.context.fillRect(140, 130, 120, 10);
-      this.context.fillRect(140, 130, 10, 100);
-      this.context.fillRect(260, 130, 10, 100); */
-    //console.log(this.bat.health)
+    console.log(this.mageTower.built, 'game');
+    if (this.mageTower.built) {
+      this.mageTower.draw();
+    } else {
+      this.towerbuilder.draw();
+    }
+    //this.mageTower.draw();
+    //this.cannonTower.draw();
   }
+
   //tower will attack if the mob is between the x coords of 140 and 260
   attack() {
     for (let i = 0; i < this.bats.length; i++) {
@@ -61,7 +68,6 @@ class Game {
 
   updateEverything(timestamp) {
     this.attack();
-
     if (this.mobTimer < timestamp - this.speed) {
       this.bats.push(new Bat(this));
       this.mobTimer = timestamp;

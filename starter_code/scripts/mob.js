@@ -56,17 +56,7 @@ class Bat extends Mob {
   }
 
   drawDeath() {
-    this.context.drawImage(
-      this.bat,
-      176,
-      0,
-      44,
-      44,
-      this.x,
-      this.y,
-      this.size,
-      this.size
-    );
+    this.context.drawImage(this.bat, 176, 0, 44, 44, this.x, this.y, 100, 100);
     this.vx *= 0;
   }
 

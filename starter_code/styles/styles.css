@@ -1,3 +1,9 @@
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
 html,
 body {
   height: 100%;
@@ -14,19 +20,44 @@ body {
   border: 1px solid red;
 } */
 
-body.game-playing button {
+main.game-playing button {
   display: none;
 }
 
-body.game-paused canvas {
+main.game-paused canvas {
   display: none;
 }
 
-body.game-playing canvas {
+main.game-paused .tower-first button {
+  display: none;
+}
+
+main.game-paused .tower-second button {
+  display: none;
+}
+
+main.game-paused #start-wave {
+  display: none;
+}
+
+main.game-playing #start-wave {
+  display: flex;
+  margin: 0 auto;
+}
+
+main.game-playing canvas {
+  display: inherit;
+}
+
+main.game-playing .tower-first button {
   display: initial;
 }
 
-button {
+main.game-playing .tower-second button {
+  display: initial;
+}
+
+.start-game {
   font: inherit;
   border: 0;
   background: none;

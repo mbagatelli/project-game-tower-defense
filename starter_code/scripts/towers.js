@@ -1,5 +1,6 @@
 class Towers {
   constructor(game) {
+    this.built = false;
     this.game = game;
     this.height = game.height;
     this.width = game.width;
@@ -13,7 +14,6 @@ class Towers {
     // Compare position between this tower and mob
     if (mob.x >= -this.radius || mob.x <= this.radius) {
     }
-    s;
   }
 }
 
@@ -26,6 +26,8 @@ class MageTower extends Towers {
   }
 
   draw() {
+    console.log(this.built);
+    this.built = true;
     this.context.drawImage(this.mageTower, 0, 0, 41, 70, 180, 55, 41, 70);
   }
 

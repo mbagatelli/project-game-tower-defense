@@ -1,14 +1,27 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width">
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width" />
     <title>Tower Defense Game</title>
     <link href="./styles/styles.css" rel="stylesheet" type="text/css" />
   </head>
-  <body class="game-paused">
-    <button>Start Game</button>
-    <canvas width="640" height="384"></canvas>
+  <body>
+    <main class="game-paused">
+      <button class="start-game">Start Game</button>
+      <canvas width="640" height="384"></canvas>
+      <div class="menu">
+        <div class="tower-first">
+          <button id="tower-first">Tower1</button>
+          <img src="./images/" alt="" />
+        </div>
+        <div class="tower-second">
+          <button>Tower</button>
+        </div>
+      </div>
+      <button id="start-wave">Start Wave</button>
+    </main>
+    <script src="./scripts/towerbuilder.js"></script>
     <script src="./scripts/towers.js"></script>
     <script src="./scripts/mob.js"></script>
     <script src="./scripts/controls.js"></script>
