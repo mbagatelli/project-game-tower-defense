@@ -14,12 +14,39 @@ class Towers {
     this.radius = 40;
     this.x = 0;
     this.size = 32;
+
+    this.damage = 0;
+    this.damageUpgrade = 0;
+
+    this.upgraded = false;
+  }
+
+  //tower will attack if the mob is between the x coords of 140 and 260
+  attackFirst() {
+    const tower = this;
+    const damage = this.upgraded ? this.damageUpgrade : this.damage;
+    if (tower.built || tower.builtUpgrade) {
+      console.log(this);
+      for (let enemy of this.game.enemies) {
+        const intersects = this.checkIntersection(enemy);
+        if (intersects) {
+          enemy.damageTaken(enemy.x, enemy.health, damage);
+        }
+      }
+    }
+  }
+
+  checkIntersection(enemy) {
+    if (enemy.x >= this.spot1x && enemy.x <= this.spot2x) {
+      return true;
+    } else {
+      return false;
+    }
   }
 
   unlockTower2() {
-    if (this.game.player.score >= 15) {
+    if (this.game.player.score >= 30) {
       document.getElementById('test').disabled = false;
-      console.log('SIGA');
     }
   }
 
