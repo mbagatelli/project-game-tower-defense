@@ -13,7 +13,7 @@ body {
   display: flex;
   justify-content: center;
   align-items: center;
-  background: lightgray;
+  /*background-image: url('../images/background/kingdom.jpg'); */
 }
 
 /* canvas {
@@ -55,6 +55,14 @@ main.game-playing .tower-first button {
 
 main.game-playing .tower-second button {
   display: initial;
+}
+
+#mage1.hide {
+  display: none;
+}
+
+#cannon1.hide {
+  display: none;
 }
 
 .start-game {

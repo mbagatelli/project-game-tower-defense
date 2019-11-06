@@ -5,7 +5,8 @@ window.addEventListener('load', () => {
   const $buttonGameStart = document.querySelector('button');
   const $main = document.querySelector('main');
   const $wave = document.getElementById('start-wave');
-  const $towerFirst = document.getElementById('tower-first');
+  const $towerFirst = document.getElementById('mage1');
+  const $towerSecond = document.getElementById('cannon1');
 
   $buttonGameStart.addEventListener('click', () => {
     $main.classList.replace('game-paused', 'game-playing');
@@ -13,11 +14,19 @@ window.addEventListener('load', () => {
   });
 
   $wave.addEventListener('click', () => {
-    game.waveStarted();
+    game.waveStart();
   });
 
   $towerFirst.addEventListener('click', () => {
     game.mageTower.draw();
+    $towerFirst.className = 'hide';
+    $towerSecond.className = 'hide';
+  });
+
+  $towerSecond.addEventListener('click', () => {
+    game.cannonTower.draw();
+    $towerFirst.className = 'hide';
+    $towerSecond.className = 'hide';
   });
 
   /*   game.registerEventCallback('lose', () => {
