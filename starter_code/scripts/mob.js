@@ -20,6 +20,8 @@ class Bat extends Mob {
     this.y = this.getRandom(128, 224);
     this.bat = new Image();
     this.bat.src = './images/mobs/bat_right.png';
+    this.count = -1;
+    this.batmovArray = [[0, 0], [44, 0], [88, 0], [132, 0]];
   }
 
   getRandom(min, max) {
@@ -27,17 +29,23 @@ class Bat extends Mob {
   }
 
   draw() {
-    this.context.drawImage(
-      this.bat,
-      0,
-      0,
-      44,
-      44,
-      this.x,
-      this.y,
-      this.size,
-      this.size
-    );
+    if (this.count < 4) {
+      this.context.drawImage(
+        this.bat,
+        this.batmovArray[this.count][0],
+        this.batmovArray[this.count][1],
+        44,
+        44,
+        this.x,
+        this.y,
+        this.size,
+        this.size
+      );
+    } else if (this.dead) {
+      this.context.drawImage(this.bat, 176, 0, 44, 44, this.x, this.y, 44, 44);
+    } else {
+      this.count = -1;
+    }
   }
 
   damageTaken(x, health, damage) {
@@ -52,7 +60,7 @@ class Bat extends Mob {
   }
 
   drawDeath() {
-    this.context.drawImage(this.bat, 176, 0, 44, 44, this.x, this.y, 100, 100);
+    //this.context.drawImage(this.bat, 176, 0, 44, 44, this.x, this.y, 100, 100);
     this.vx *= 0;
   }
 
@@ -68,6 +76,7 @@ class Bat extends Mob {
   }
 
   update() {
+    this.count += 1;
     this.x += this.vx;
   }
 }
@@ -82,14 +91,55 @@ class Ghost extends Mob {
     this.y = this.getRandom(128, 224);
     this.ghost = new Image();
     this.ghost.src = './images/mobs/ghost.png';
+    this.count = -1;
+    this.ghostmovArray = [
+      [0, 0],
+      [37, 0],
+      [74, 0],
+      [111, 0],
+      [148, 0],
+      [185, 0],
+      [222, 0],
+      [259, 0],
+      [296, 0],
+      [333, 0],
+      [370, 0],
+      [407, 0]
+    ];
   }
 
   getRandom(min, max) {
     return Math.floor(Math.random() * (max - min + 1)) + min;
   }
-
+  //37x45
   draw() {
-    this.context.drawImage(this.ghost, 0, 0, 37, 45, this.x, this.y, 29.6, 36);
+    if (this.count < 12) {
+      this.context.drawImage(
+        this.ghost,
+        this.ghostmovArray[this.count][0],
+        this.ghostmovArray[this.count][1],
+        37,
+        45,
+        this.x,
+        this.y,
+        29.6,
+        36
+      );
+    } else if (this.dead) {
+      this.context.drawImage(
+        this.ghost,
+        0,
+        0,
+        37,
+        45,
+        this.x,
+        this.y,
+        29.6,
+        36
+      );
+    } else {
+      this.count = -1;
+    }
   }
 
   die() {
@@ -104,6 +154,7 @@ class Ghost extends Mob {
   }
 
   update() {
+    this.count++;
     this.x += this.vx;
   }
 }

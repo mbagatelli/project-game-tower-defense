@@ -22,7 +22,7 @@ class Game {
     this.mobTimerBats = 0;
     this.mobTimerKnights = 0;
     this.mobTimerGhosts = 0;
-    this.isitDead;
+    //this.isitDead;
   }
 
   clear() {
@@ -59,18 +59,20 @@ class Game {
       }
     }
 
-    if (this.mageTower.builtMage && !this.cannonTower.builtCannon) {
+    if (this.mageTower.built && !this.cannonTower.built) {
       this.mageTower.draw();
+      this.attack(this.mageTower);
       this.towerbuilder.drawSpot2();
-    } else if (!this.cannonTower.builtCannon) {
+    } else if (!this.cannonTower.built) {
       this.towerbuilder.drawSpot1();
       this.towerbuilder.drawSpot2();
     }
 
-    if (this.cannonTower.builtCannon && !this.mageTower.builtMage) {
+    if (this.cannonTower.built && !this.mageTower.built) {
       this.cannonTower.draw();
+      this.attack(this.cannonTower);
       this.towerbuilder.drawSpot2();
-    } else if (!this.mageTower.builtMage) {
+    } else if (!this.mageTower.built) {
       this.towerbuilder.drawSpot1();
       this.towerbuilder.drawSpot2();
     }
@@ -79,14 +81,14 @@ class Game {
   }
 
   //tower will attack if the mob is between the x coords of 140 and 260
-  attack() {
-    if (this.mageTower.builtMage && !this.cannonTower.builtCannon) {
+  attack(tower) {
+    if (tower.built && !this.cannonTower.built) {
       for (let i = 0; i < this.bats.length; i++) {
         if (this.bats[i].x >= 140 && this.bats[i].x <= 260) {
           this.bats[i].damageTaken(
             this.bats[i].x,
             this.bats[i].health,
-            this.mageTower.damage
+            tower.damage
           );
         }
       }
@@ -94,7 +96,7 @@ class Game {
   }
 
   updateEverything(timestamp) {
-    this.attack();
+    //this.attack();
 
     if (this.waveStarted) {
       if (this.mobTimerBats < timestamp - this.batsPush) {

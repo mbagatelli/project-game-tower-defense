@@ -1,7 +1,7 @@
 class Towers {
   constructor(game) {
-    this.builtMage = false;
-    this.builtCannon = false;
+    /*     this.builtMage = false;
+    this.builtCannon = false; */
     this.game = game;
     this.height = game.height;
     this.width = game.width;
@@ -22,14 +22,15 @@ class Towers {
 class MageTower extends Towers {
   constructor(game) {
     super(game);
+    this.built = false;
     this.damage = 1.3;
     this.mageTower = new Image();
     this.mageTower.src = './images/towers/towers.png';
   }
 
   draw() {
-    this.builtMage = true;
-    this.builtCannon = false;
+    this.built = true;
+    this.game.cannonTower.built = false;
     this.context.drawImage(this.mageTower, 0, 0, 41, 70, 180, 55, 41, 70);
   }
 
@@ -42,14 +43,15 @@ class MageTower extends Towers {
 class CannonTower extends Towers {
   constructor(game) {
     super(game);
+    this.built = false;
     this.damage = 0.7;
     this.cannonTower = new Image();
     this.cannonTower.src = './images/towers/towers.png';
   }
 
   draw() {
-    this.builtCannon = true;
-    this.builtMage = false;
+    this.built = true;
+    this.MageTower.built = false;
     this.context.drawImage(this.cannonTower, 164, 70, 41, 70, 180, 55, 41, 70);
     //this.context.drawImage(this.cannonTower, 164, 70, 41, 70, 370, 210, 41, 70);
   }
