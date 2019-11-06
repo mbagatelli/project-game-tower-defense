@@ -59,37 +59,46 @@ class Game {
       }
     }
 
-    if (this.mageTower.built && !this.cannonTower.built) {
+    if (this.mageTower.built) {
       this.mageTower.draw();
-      this.attack(this.mageTower);
-      this.towerbuilder.drawSpot2();
-    } else if (!this.cannonTower.built) {
+      this.attackFirst(this.mageTower, this.mageTower.damage);
+    } else {
       this.towerbuilder.drawSpot1();
-      this.towerbuilder.drawSpot2();
+      //this.towerbuilder.drawSpot2();
     }
 
-    if (this.cannonTower.built && !this.mageTower.built) {
+    if (this.cannonTower.built) {
       this.cannonTower.draw();
-      this.attack(this.cannonTower);
-      this.towerbuilder.drawSpot2();
+      this.attackFirst(this.cannonTower);
+      //this.towerbuilder.drawSpot2();
     } else if (!this.mageTower.built) {
       this.towerbuilder.drawSpot1();
+      //this.towerbuilder.drawSpot2();
+    }
+
+    if (this.mageTower.built2) {
+      this.mageTower.drawPos2();
+      this.attackFirst(this.mageTower);
+    } else if (!this.cannonTower.built2) {
       this.towerbuilder.drawSpot2();
     }
-    //this.mageTower.draw();
-    //this.cannonTower.draw();
+    if (this.cannonTower.built2) {
+      this.cannonTower.drawPos2();
+      this.attackFirst(this.cannonTower);
+    }
+    if (this.mageTower.builtUpgrade) {
+      this.mageTower.built = false;
+      this.mageTower.drawUpgrade();
+      this.attackFirst(this.mageTower, this.mageTower.damageUpgrade); //,
+    }
   }
 
   //tower will attack if the mob is between the x coords of 140 and 260
-  attack(tower) {
-    if (tower.built && !this.cannonTower.built) {
+  attackFirst(tower, damage) {
+    if (tower.built || tower.builtUpgrade) {
       for (let i = 0; i < this.bats.length; i++) {
         if (this.bats[i].x >= 140 && this.bats[i].x <= 260) {
-          this.bats[i].damageTaken(
-            this.bats[i].x,
-            this.bats[i].health,
-            tower.damage
-          );
+          this.bats[i].damageTaken(this.bats[i].x, this.bats[i].health, damage);
         }
       }
     }

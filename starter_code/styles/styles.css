@@ -32,7 +32,15 @@ main.game-paused .tower-first button {
   display: none;
 }
 
+main.game-paused .tower-first2 button {
+  display: none;
+}
+
 main.game-paused .tower-second button {
+  display: none;
+}
+
+main.game-paused .tower-second2 button {
   display: none;
 }
 
@@ -53,7 +61,23 @@ main.game-playing .tower-first button {
   display: initial;
 }
 
+main.game-playing .tower-first2 button {
+  display: initial;
+}
+
 main.game-playing .tower-second button {
+  display: initial;
+}
+
+main.game-playing .tower-second2 button {
+  display: initial;
+}
+
+main.game-paused #test {
+  display: none;
+}
+
+main.game-playing #test {
   display: initial;
 }
 

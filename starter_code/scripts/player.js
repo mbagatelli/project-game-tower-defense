@@ -6,6 +6,7 @@ class Player {
   }
   getScore(value) {
     this.score += value;
+    this.game.tower.unlockTower2();
     console.log(this.score);
   }
 }
