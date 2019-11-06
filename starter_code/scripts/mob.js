@@ -143,13 +143,13 @@ class Skel extends Mob {
     //this.ghostDead.src = './images/mobs/ghost_dead.png';
     this.count = -1;
     //this.countDead = 0;
-    this.skelMovArray = [[0, 0], [22, 0], [44, 0], [66, 0], [88, 0], [110, 0], [132, 0], [154, 0], [176, 0], [198, 0], [220, 0], [242, 0], [264, 0]];
+    this.skelMovArray = [[0, 0], [23, 0], [45, 0], [67, 0], [89, 0], [111, 0], [133, 0], [155, 0], [177, 0], [199, 0], [221, 0], [243, 0], [265, 0]];
     //this.ghostDeadArray = [[0, 0], [37, 0], [74, 0], [111, 0], [148, 0], [185, 0], [222, 0], [259, 0], [296, 0], [333, 0], [370, 0], [407, 0], [444, 0]];
   }
   //22x33
   draw() {
     if (this.count < 13) {
-      this.context.drawImage(this.skel, this.skelMovArray[this.count][0], this.skelMovArray[this.count][1], 22, 33, this.x, this.y, 61.6, 100.8);
+      this.context.drawImage(this.skel, this.skelMovArray[this.count][0], this.skelMovArray[this.count][1], 21, 33, this.x, this.y, 52.5, 82.5);
     } else if (this.dead) {
       this.drawDeath();
     } else {

@@ -31,7 +31,7 @@ class Game {
   score() {
     this.context.font = '20px Georgia';
     this.context.fillStyle = 'black';
-    this.context.fillText(`Score: ${this.player.score}`, 520, 20);
+    this.context.fillText(`Score: ${this.player.score}`, 520, 25);
   }
 
   start() {
@@ -46,6 +46,12 @@ class Game {
 
   waveStart() {
     this.waveStarted = true;
+  }
+
+  life() {
+    this.context.fillStyle = 'black';
+    this.context.drawImage(this.player.heart, 5, 5, 25, 25);
+    this.context.fillText(`${this.player.life}/10`, 35, 25);
   }
 
   drawEverything() {
@@ -87,7 +93,7 @@ class Game {
       this.mageTower.built = false;
       this.mageTower.drawUpgrade();
     }
-
+    this.life();
     this.score();
   }
 
@@ -152,6 +158,13 @@ class Game {
     if (this.mageTower.builtUpgrade) {
       this.mageTower.built = false;
       this.mageTower.attackFirst(this.mageTower, this.mageTower.damageUpgrade);
+    }
+
+    //check if enemy passes the end of the road
+    for (let enemy of this.enemies) {
+      if (enemy.x >= this.width) {
+        this.player.loseLife();
+      }
     }
   }
 }

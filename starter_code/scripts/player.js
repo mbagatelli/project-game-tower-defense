@@ -1,14 +1,20 @@
 class Player {
   constructor(game) {
     this.game = game;
+    this.context = game.context;
     this.score = 0;
     this.money = 200;
+    this.life = 10;
+    this.heart = new Image();
+    this.heart.src = './images/heart.png';
   }
+
+  loseLife() {
+    this.life -= 1;
+  }
+
   getScore(value) {
     this.score += value;
     this.game.tower.unlockTower2();
-    this.game.context.fillStyle = 'black';
-    this.game.context.fillText(`Score: ${this.score}`, 600, 20);
-    console.log(this.score);
   }
 }
