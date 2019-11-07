@@ -26,7 +26,6 @@ class Towers {
     const tower = this;
     const damage = this.upgraded ? this.damageUpgrade : this.damage;
     if (tower.built || tower.builtUpgrade) {
-      console.log(this);
       for (let enemy of this.game.enemies) {
         const intersects = this.checkIntersection(enemy);
         if (intersects) {

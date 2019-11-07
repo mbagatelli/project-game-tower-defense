@@ -162,7 +162,9 @@ class Game {
 
     //check if enemy passes the end of the road
     for (let enemy of this.enemies) {
+      console.log(this.enemies);
       if (enemy.x >= this.width) {
+        this.enemies.splice(0, 1);
         this.player.loseLife();
       }
     }
