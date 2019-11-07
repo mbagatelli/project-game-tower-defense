@@ -76,7 +76,7 @@ class Ghost extends Mob {
   constructor(game) {
     super(game);
     this.value = 10;
-    this.health = 50;
+    this.health = 30;
     this.dead = false;
     this.speed;
     this.y = this.getRandom(128, 224);
@@ -112,7 +112,7 @@ class Knight extends Mob {
   constructor(game) {
     super(game);
     this.value = 10;
-    this.health = 30;
+    this.health = 50;
     this.dead = false;
     this.speed;
     this.y = this.getRandom(128, 224);
@@ -133,21 +133,22 @@ class Skel extends Mob {
   constructor(game) {
     super(game);
     this.value = 30;
-    this.health = 500;
+    this.health = 300;
     this.dead = false;
     this.speed;
     this.y = 140;
     this.skel = new Image();
     this.skel.src = './images/mobs/skel_walk.png';
-    // this.ghostDead = new Image();
-    //this.ghostDead.src = './images/mobs/ghost_dead.png';
+    this.skelDead = new Image();
+    this.skelDead.src = './images/mobs/skel_dead.png';
     this.count = -1;
-    //this.countDead = 0;
+    this.countDead = 0;
     this.skelMovArray = [[0, 0], [23, 0], [45, 0], [67, 0], [89, 0], [111, 0], [133, 0], [155, 0], [177, 0], [199, 0], [221, 0], [243, 0], [265, 0]];
-    //this.ghostDeadArray = [[0, 0], [37, 0], [74, 0], [111, 0], [148, 0], [185, 0], [222, 0], [259, 0], [296, 0], [333, 0], [370, 0], [407, 0], [444, 0]];
+    this.skelDeadArray = [[0, 0], [33, 0], [66, 0], [99, 0], [132, 0], [165, 0], [198, 0], [231, 0], [264, 0], [297, 0], [330, 0], [363, 0], [396, 0], [429, 0], [462, 0]];
   }
   //22x33
   draw() {
+    console.log(this.health);
     if (this.count < 13) {
       this.context.drawImage(this.skel, this.skelMovArray[this.count][0], this.skelMovArray[this.count][1], 21, 33, this.x, this.y, 52.5, 82.5);
     } else if (this.dead) {
@@ -158,8 +159,9 @@ class Skel extends Mob {
   }
 
   drawDeath() {
-    //if (this.countDead < 13) {
-    //this.context.drawImage(this.ghostDead, this.ghostDeadArray[this.countDead][0], this.ghostDeadArray[this.countDead][1], 37, 45, this.x, this.y, 29.6, 36);
-    this.vx *= 0;
+    if (this.countDead < 15) {
+      this.context.drawImage(this.skelDead, this.skelDeadArray[this.countDead][0], this.skelDeadArray[this.countDead][1], 33, 31, this.x, this.y, 52.5, 85.5);
+      this.vx *= 0;
+    }
   }
 }

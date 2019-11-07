@@ -9,10 +9,14 @@ window.addEventListener('load', () => {
   const $towerSecond = document.getElementById('cannon1');
   const $towerFirst2 = document.getElementById('mage2');
   const $towerSecond2 = document.getElementById('cannon2');
-  const $towerUpgradeFirst = document.getElementById('test');
+  const $towerUpgradeFirstMage = document.getElementById('mage-upgrade1');
+  const $towerUpgradeFirstCannon = document.getElementById('cannon-upgrade1');
+  const $towerUpgradeSecondMage = document.getElementById('mage-upgrade2');
+  const $towerUpgradeSecondCannon = document.getElementById('cannon-upgrade2');
 
   $buttonGameStart.addEventListener('click', () => {
     $main.classList.replace('game-paused', 'game-playing');
+    $buttonGameStart.classList.replace('start-game', 'canvas-time');
     game.start();
   });
 
@@ -49,13 +53,35 @@ window.addEventListener('load', () => {
     $towerSecond2.disabled = true;
   });
 
-  $towerUpgradeFirst.addEventListener('click', () => {
+  $towerUpgradeFirstMage.addEventListener('click', () => {
     game.mageTower.drawUpgrade();
-    game.player.score -= 30;
-    $towerUpgradeFirst.disabled = true;
+    game.player.score -= game.mageTower.upgradeCost;
+    $towerUpgradeFirstMage.disabled = true;
+    $towerUpgradeFirstCannon.disabled = true;
+  });
+
+  $towerUpgradeFirstCannon.addEventListener('click', () => {
+    game.cannonTower.drawUpgrade();
+    game.player.score -= game.cannonTower.upgradeCost;
+    $towerUpgradeFirstMage.disabled = true;
+    $towerUpgradeFirstCannon.disabled = true;
+  });
+
+  $towerUpgradeSecondMage.addEventListener('click', () => {
+    game.mageTower.drawUpgrade2();
+    game.player.score -= game.mageTower.upgradeCost;
+    $towerUpgradeFirstMage.disabled = true;
+    $towerUpgradeFirstCannon.disabled = true;
+  });
+
+  $towerUpgradeSecondCannon.addEventListener('click', () => {
+    game.cannonTower.drawUpgrade2();
+    game.player.score -= game.cannonTower.upgradeCost;
+    $towerUpgradeFirstMage.disabled = true;
+    $towerUpgradeFirstCannon.disabled = true;
   });
 
   /*   game.registerEventCallback('lose', () => {
-    $body.classList.replace('game-playing', 'game-paused');
+    $body.classList.replace('game-playing', 'game-lost');
   }); */
 });

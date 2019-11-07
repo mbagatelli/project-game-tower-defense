@@ -15,6 +15,12 @@ class Player {
 
   getScore(value) {
     this.score += value;
-    this.game.tower.unlockTower2();
+    //this.game.tower.unlockTower2();
+  }
+
+  youDead() {
+    if (this.life == 0) {
+      this.game.reset();
+    }
   }
 }

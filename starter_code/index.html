@@ -7,29 +7,27 @@
     <link href="./styles/styles.css" rel="stylesheet" type="text/css" />
   </head>
   <body>
+    <button class="start-game">Start Game</button>
     <main class="game-paused">
-      <button class="start-game">Start Game</button>
-      <canvas width="640" height="384"></canvas>
-      <div class="menu">
-        <div class="tower-first">
-          <button id="mage1">Tower Mage 1</button>
-          <img src="./images/" alt="" />
-        </div>
-        <div class="tower-second">
-          <button id="cannon1">Tower Cannon 1</button>
-        </div>
-        <div class="tower-first2">
-          <button id="mage2">Tower Mage 2</button>
-          <img src="./images/" alt="" />
-        </div>
-        <div class="tower-second2">
-          <button id="cannon2">Tower Cannon 2</button>
-        </div>
-        <div>
-          <button id="test" disabled>VALUE TEST</button>
-        </div>
+      <canvas class="mainhide" width="640" height="384"></canvas>
+      <div id="game-area" class="menu">
+        <button id="mage1" class="tower-first mainhide">Tower Mage 1</button>
+
+        <button id="cannon1" class="tower-second mainhide">Tower Cannon 1</button>
+
+        <button id="mage2" class="tower-first2 mainhide">Tower Mage 2</button>
+
+        <button id="cannon2" class="tower-second2 mainhide">Tower Cannon 2</button>
+
+        <button id="mage-upgrade1" class="mainhide" disabled>Upgrade Mage Tower</button>
+
+        <button id="cannon-upgrade1" class="mainhide" disabled>Upgrade Cannon Tower</button>
+
+        <button id="mage-upgrade2" class="mainhide" disabled>Upgrade Mage Tower2</button>
+
+        <button id="cannon-upgrade2" class="mainhide" disabled>Upgrade Cannon Tower2</button>
       </div>
-      <button id="start-wave" disabled>Start Wave</button>
+      <button id="start-wave" class="mainhide" disabled>Start Wave</button>
     </main>
     <script src="./scripts/player.js"></script>
     <script src="./scripts/towerbuilder.js"></script>

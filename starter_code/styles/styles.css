@@ -7,93 +7,54 @@
 html,
 body {
   height: 100%;
+  background: black;
 }
 
-body {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  /*background-image: url('../images/background/kingdom.jpg'); */
-}
-
-/* canvas {
-  border: 1px solid red;
-} */
-
-main.game-playing button {
-  display: none;
-}
-
-main.game-paused canvas {
-  display: none;
-}
-
-main.game-paused .tower-first button {
-  display: none;
-}
-
-main.game-paused .tower-first2 button {
-  display: none;
-}
-
-main.game-paused .tower-second button {
-  display: none;
-}
-
-main.game-paused .tower-second2 button {
-  display: none;
-}
-
-main.game-paused #start-wave {
-  display: none;
-}
-
-main.game-playing #start-wave {
-  display: flex;
-  margin: 0 auto;
-}
-
-main.game-playing canvas {
-  display: inherit;
-}
-
-main.game-playing .tower-first button {
-  display: initial;
-}
-
-main.game-playing .tower-first2 button {
-  display: initial;
-}
-
-main.game-playing .tower-second button {
-  display: initial;
-}
-
-main.game-playing .tower-second2 button {
-  display: initial;
-}
-
-main.game-paused #test {
-  display: none;
-}
-
-main.game-playing #test {
-  display: initial;
-}
-
-#mage1.hide {
-  display: none;
-}
-
-#cannon1.hide {
+.game-paused {
   display: none;
 }
 
 .start-game {
-  font: inherit;
-  border: 0;
-  background: none;
-  padding: 1em;
+  display: initial;
+}
+.canvas-time {
+  display: none;
+}
+
+body {
+  background: url('../images/background/kingdom.jpg');
+  background-size: contain;
+  background-repeat: no-repeat;
+  background-position: center;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* button:disabled {
+  display: inline-block;
+  padding: 0.7em 1.7em;
+  margin: 0 0.3em 0.3em 0;
+  border-radius: 0.2em;
+  box-sizing: border-box;
+  text-decoration: none;
+  font-family: 'Roboto', sans-serif;
+  font-weight: 400;
+  color: #ffffff;
+  background-color: #a7adc0;
+  box-shadow: inset 0 -0.6em 1em -0.35em rgba(0, 0, 0, 0.17), inset 0 0.6em 2em -0.3em rgba(255, 255, 255, 0.15), inset 0 0 0em 0.05em rgba(255, 255, 255, 0.12);
+  text-align: center;
+  position: relative;
+} */
+
+#start {
+  display: inline-block;
+  background-color: #192592;
+  border: none;
+  border-radius: 0.3em;
+  color: white;
   font-size: 2em;
-  color: black;
+  padding: 0.8em;
+  width: 15vw;
+  font-weight: bold;
 }

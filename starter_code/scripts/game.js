@@ -13,10 +13,10 @@ class Game {
     this.tower = new Towers(this);
     this.mageTower = new MageTower(this);
     this.cannonTower = new CannonTower(this);
-    this.batsPush = 2500;
-    this.knightsPush = 3500;
-    this.ghostsPush = 5000;
-    this.skelsPush = 10000;
+    this.batsPush = 0;
+    this.knightsPush = 0;
+    this.ghostsPush = 0;
+    this.skelsPush = 0;
     this.mobTimerSkels = 0;
     this.mobTimerBats = 0;
     this.mobTimerKnights = 0;
@@ -27,6 +27,8 @@ class Game {
   clear() {
     this.context.clearRect(0, 0, 640, 384);
   }
+
+  reset() {}
 
   score() {
     this.context.font = '20px Georgia';
@@ -55,7 +57,6 @@ class Game {
   }
 
   drawEverything() {
-    //this.clear ();
     this.background.paintMap();
 
     if (this.waveStarted) {
@@ -93,21 +94,31 @@ class Game {
       this.mageTower.built = false;
       this.mageTower.drawUpgrade();
     }
+    if (this.mageTower.builtUpgrade2) {
+      this.mageTower.built2 = false;
+      this.mageTower.drawUpgrade2();
+    }
+    if (this.cannonTower.builtUpgrade) {
+      this.cannonTower.builtUpgrade = false;
+      this.cannonTower.drawUpgrade();
+    }
+    if (this.cannonTower.builtUpgrade2) {
+      this.cannonTower.builtUpgrade2 = false;
+      this.cannonTower.drawUpgrade2();
+    }
     this.life();
     this.score();
   }
 
-  attackGhost() {
-    // for (let i = 0; i < this.ghosts.length; i++) {
-    //   if (this.ghosts[i].x >= 140 && this.ghosts[i].x <= 260) {
-    //     this.ghosts[i].damageTaken(this.ghosts[i].x, this.ghosts[i].health, this.mageTower.damage);
-    //   }
-    // }
-  }
-
   updateEverything(timestamp) {
     //this.attack();
+    this.tower.unlockTower2();
+
     if (this.waveStarted) {
+      this.batsPush = 4500;
+      this.knightsPush = 8500;
+      this.ghostsPush = 1500;
+      this.skelsPush = 10000;
       if (this.mobTimerBats < timestamp - this.batsPush) {
         this.enemies.push(new Bat(this));
         this.mobTimerBats = timestamp;
@@ -144,25 +155,28 @@ class Game {
     }
 
     if (this.cannonTower.built) {
-      this.cannonTower.attackFirst(this.cannonTower);
+      this.cannonTower.attackFirst(this.cannonTower, this.cannonTower.damage);
     }
 
     if (this.mageTower.built2) {
-      this.mageTower.attackFirst(this.mageTower);
+      this.mageTower.attackSecond(this.mageTower, this.mageTower.damage);
     }
 
     if (this.cannonTower.built2) {
-      this.cannonTower.attackFirst(this.cannonTower);
+      this.cannonTower.attackSecond(this.cannonTower, this.cannonTower.damage);
     }
 
     if (this.mageTower.builtUpgrade) {
       this.mageTower.built = false;
       this.mageTower.attackFirst(this.mageTower, this.mageTower.damageUpgrade);
     }
+    if (this.cannonTower.builtUpgrade) {
+      this.cannonTower.built = false;
+      this.cannonTower.attackFirst(this.cannonTower, this.cannonTower.damageUpgrade);
+    }
 
     //check if enemy passes the end of the road
     for (let enemy of this.enemies) {
-      console.log(this.enemies);
       if (enemy.x >= this.width) {
         this.enemies.splice(0, 1);
         this.player.loseLife();
