@@ -10,12 +10,32 @@ body {
   background: black;
 }
 
+body {
+  display: flex;
+}
+
+.container {
+  display: flex;
+}
+
 .game-paused {
   display: none;
 }
 
+#start-wave {
+  width: 21.4vh;
+}
+
 .start-game {
   display: initial;
+  background-color: #192592;
+  border: none;
+  border-radius: 0.3em;
+  color: white;
+  font-size: 2em;
+  padding: 0.8em;
+  width: 15vw;
+  font-weight: bold;
 }
 .canvas-time {
   display: none;
@@ -31,7 +51,7 @@ body {
   justify-content: center;
 }
 
-/* button:disabled {
+button:disabled {
   display: inline-block;
   padding: 0.7em 1.7em;
   margin: 0 0.3em 0.3em 0;
@@ -45,7 +65,24 @@ body {
   box-shadow: inset 0 -0.6em 1em -0.35em rgba(0, 0, 0, 0.17), inset 0 0.6em 2em -0.3em rgba(255, 255, 255, 0.15), inset 0 0 0em 0.05em rgba(255, 255, 255, 0.12);
   text-align: center;
   position: relative;
-} */
+}
+
+button {
+  display: inline-block;
+  width: 5vw;
+  padding: 0.7em 1.7em;
+  margin: 0 0.3em 0.3em 0;
+  border-radius: 0.2em;
+  box-sizing: border-box;
+  text-decoration: none;
+  font-family: 'Roboto', sans-serif;
+  font-weight: 400;
+  color: #ffffff;
+  background-color: #4a5680;
+  box-shadow: inset 0 -0.6em 1em -0.35em rgba(0, 0, 0, 0.17), inset 0 0.6em 2em -0.3em rgba(255, 255, 255, 0.15), inset 0 0 0em 0.05em rgba(255, 255, 255, 0.12);
+  text-align: center;
+  position: relative;
+}
 
 #start {
   display: inline-block;
@@ -57,4 +94,12 @@ body {
   padding: 0.8em;
   width: 15vw;
   font-weight: bold;
+}
+
+.hide {
+  display: none;
+}
+
+#reset {
+  width: 21.4vh;
 }

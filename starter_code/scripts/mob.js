@@ -148,7 +148,6 @@ class Skel extends Mob {
   }
   //22x33
   draw() {
-    console.log(this.health);
     if (this.count < 13) {
       this.context.drawImage(this.skel, this.skelMovArray[this.count][0], this.skelMovArray[this.count][1], 21, 33, this.x, this.y, 52.5, 82.5);
     } else if (this.dead) {

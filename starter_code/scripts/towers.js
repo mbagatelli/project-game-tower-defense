@@ -6,6 +6,8 @@ class Towers {
     this.height = game.height;
     this.width = game.width;
     this.context = game.context;
+    this.isItBuilt = false;
+    this.isItBuiltPos2 = false;
     this.spot1x = 180;
     this.spot1y = 55;
     this.spot2x = 370;
@@ -15,8 +17,6 @@ class Towers {
     this.size = 32;
     this.isInsideRadius = [];
     this.isInsideRadius2 = [];
-    this.builtUpgrade = false;
-    this.builtUpgrade2 = false;
 
     this.damage = 0;
     this.damageUpgrade = 0;
@@ -78,10 +78,16 @@ class Towers {
   }
 
   unlockTower2() {
-    if (this.game.player.score >= this.game.mageTower.upgradeCost) {
+    if (this.game.player.score >= this.game.mageTower.upgradeCost && this.game.mageTower.isItBuilt && !this.game.blockButton) {
       document.getElementById('mage-upgrade1').disabled = false;
-      document.getElementById('cannon-upgrade1').disabled = false;
+    }
+    if (this.game.player.score >= this.game.mageTower.upgradeCost && this.game.mageTower.isItBuiltPos2 && !this.game.blockButton2) {
       document.getElementById('mage-upgrade2').disabled = false;
+    }
+    if (this.game.player.score >= this.game.cannonTower.upgradeCost && this.game.cannonTower.isItBuilt && !this.game.blockButton3) {
+      document.getElementById('cannon-upgrade1').disabled = false;
+    }
+    if (this.game.player.score >= this.game.cannonTower.upgradeCost && this.game.cannonTower.isItBuiltPos2 && !this.game.blockButton4) {
       document.getElementById('cannon-upgrade2').disabled = false;
     }
   }
@@ -92,7 +98,9 @@ class MageTower extends Towers {
     super(game);
     this.built = false;
     this.buil2 = false;
-    this.upgradeCost = 10;
+    this.builtUpgrade = false;
+    this.builtUpgrade2 = false;
+    this.upgradeCost = 30;
     this.damage = 1.5;
     this.damageUpgrade = 2;
     this.mageTower = new Image();
@@ -101,12 +109,14 @@ class MageTower extends Towers {
 
   draw() {
     this.built = true;
+    this.isItBuilt = true;
     this.game.cannonTower.built = false;
     this.context.drawImage(this.mageTower, 0, 0, 41, 70, this.spot1x, this.spot1y, 41, 70);
   }
 
   drawPos2() {
     this.built2 = true;
+    this.isItBuiltPos2 = true;
     this.game.cannonTower.built2 = false;
     this.context.drawImage(this.mageTower, 0, 0, 41, 70, this.spot2x, this.spot2y, 41, 70);
   }
@@ -118,7 +128,7 @@ class MageTower extends Towers {
     this.context.drawImage(this.mageTower, 164, 0, 41, 70, this.spot1x, this.spot1y, 41, 70);
   }
   drawUpgrade2() {
-    this.built = false;
+    //this.built = false;
     this.builtUpgrade2 = true;
     this.upgraded = true;
     this.context.drawImage(this.mageTower, 164, 0, 41, 70, this.spot2x, this.spot2y, 41, 70);
@@ -130,20 +140,24 @@ class CannonTower extends Towers {
     super(game);
     this.built = false;
     this.built2 = false;
+    this.builtUpgrade = false;
+    this.builtUpgrade2 = false;
     this.damage = 1;
     this.damageUpgrade = 3;
-    this.upgradeCost = 30;
+    this.upgradeCost = 50;
     this.cannonTower = new Image();
     this.cannonTower.src = './images/towers/towers.png';
   }
 
   draw() {
+    this.isItBuilt = true;
     this.built = true;
     this.game.mageTower.built = false;
     this.context.drawImage(this.cannonTower, 164, 70, 41, 70, this.spot1x, this.spot1y, 41, 70);
   }
 
   drawPos2() {
+    this.isItBuiltPos2 = true;
     this.built2 = true;
     this.game.mageTower.built2 = false;
     this.context.drawImage(this.cannonTower, 164, 70, 41, 70, this.spot2x, this.spot2y, 41, 70);

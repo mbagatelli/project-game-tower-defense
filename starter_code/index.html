@@ -9,25 +9,40 @@
   <body>
     <button class="start-game">Start Game</button>
     <main class="game-paused">
-      <canvas class="mainhide" width="640" height="384"></canvas>
-      <div id="game-area" class="menu">
-        <button id="mage1" class="tower-first mainhide">Tower Mage 1</button>
+      <div class="container">
+        <canvas width="640" height="384"></canvas>
+        <div id="game-area" class="menu">
 
-        <button id="cannon1" class="tower-second mainhide">Tower Cannon 1</button>
+          <div>
+            <button id="mage1" class="tower-first ">Mage</button>
+            <button id="cannon1" class="tower-second ">Cannon</button>
+          </div>
 
-        <button id="mage2" class="tower-first2 mainhide">Tower Mage 2</button>
+          <div>
+            <button id="mage2" class="tower-first2">Mage</button>
+            <button id="cannon2" class="tower-second2">Cannon</button>
+          </div>
 
-        <button id="cannon2" class="tower-second2 mainhide">Tower Cannon 2</button>
+          <div>
+            <button id="mage-upgrade1" disabled>Upgrade Mage Tower</button>
+            <button id="cannon-upgrade1" disabled>Upgrade Cannon Tower</button>
+          </div>
 
-        <button id="mage-upgrade1" class="mainhide" disabled>Upgrade Mage Tower</button>
+          <div>
+            <button id="mage-upgrade2" disabled>Upgrade Mage Tower2</button>
+            <button id="cannon-upgrade2" disabled>Upgrade Cannon Tower2</button>
+          </div>
 
-        <button id="cannon-upgrade1" class="mainhide" disabled>Upgrade Cannon Tower</button>
+          <div>
+          <button id="start-wave" disabled>Start Wave</button>
+          </div>
 
-        <button id="mage-upgrade2" class="mainhide" disabled>Upgrade Mage Tower2</button>
-
-        <button id="cannon-upgrade2" class="mainhide" disabled>Upgrade Cannon Tower2</button>
+      <div>
+        <button id="reset">Reset Game</button>
       </div>
-      <button id="start-wave" class="mainhide" disabled>Start Wave</button>
+
+      </div>
+      <div>
     </main>
     <script src="./scripts/player.js"></script>
     <script src="./scripts/towerbuilder.js"></script>
