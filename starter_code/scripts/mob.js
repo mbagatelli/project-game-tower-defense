@@ -164,3 +164,116 @@ class Skel extends Mob {
     }
   }
 }
+
+class Worm extends Mob {
+  constructor(game) {
+    super(game);
+    this.value = 30;
+    this.y = 340;
+    this.x = -400;
+    this.worm = new Image();
+    this.worm.src = './images/mobs/worm.png';
+    this.count = -1;
+    this.sprite = 16;
+    this.wormMovArray = [
+      [0, 0],
+      [0, 0],
+      [0, 0],
+      [16, 0],
+      [16, 0],
+      [16, 0],
+      [32, 0],
+      [32, 0],
+      [32, 0],
+      [48, 0],
+      [48, 0],
+      [48, 0],
+      [64, 0],
+      [64, 0],
+      [64, 0],
+      [80, 0],
+      [80, 0],
+      [80, 0],
+      [96, 0],
+      [96, 0],
+      [96, 0],
+      [112, 0],
+      [112, 0],
+      [112, 0],
+      [this.sprite * 30, 0],
+      [this.sprite * 30, 0],
+      [this.sprite * 30, 0]
+      /*       [this.sprite * 31, 0],
+      [this.sprite * 31, 0],
+      [this.sprite * 31, 0] */
+    ];
+  }
+  //22x33
+  draw() {
+    if (this.count < 27) {
+      this.context.drawImage(this.worm, this.wormMovArray[this.count][0], this.wormMovArray[this.count][1], 16, 24, this.x, this.y, 16, 24);
+    } else if (this.dead) {
+      this.drawDeath();
+    } else {
+      this.count = 0;
+    }
+  }
+
+  drawDeath() {
+    if (this.countDead < 15) {
+      this.context.drawImage(this.skelDead, this.skelDeadArray[this.countDead][0], this.skelDeadArray[this.countDead][1], 33, 31, this.x, this.y, 52.5, 85.5);
+      this.vx *= 0;
+    }
+  }
+}
+
+class Fox extends Mob {
+  constructor(game) {
+    super(game);
+    this.speed;
+    this.x = -10;
+    this.y = 77;
+    this.count = -1;
+    this.fox = new Image();
+    this.fox.src = './images/mobs/fox.png';
+    this.foxmovArray = [[0, 0], [0, 0], [0, 0], [24, 0], [24, 0], [24, 0], [48, 0], [48, 0], [48, 0], [72, 0], [72, 0], [72, 0], [96, 0], [96, 0], [96, 0], [120, 0], [120, 0], [120, 0]];
+  }
+
+  //37x45
+  draw() {
+    if (this.count < 18) {
+      this.context.drawImage(this.fox, this.foxmovArray[this.count][0], this.foxmovArray[this.count][1], 24, 24, this.x, this.y, 24, 24);
+    } else if (this.dead) {
+      this.drawDeath();
+    } else {
+      this.count = -1;
+    }
+  }
+
+  drawDeath() {
+    if (this.countDead < 13) {
+      this.context.drawImage(this.ghostDead, this.ghostDeadArray[this.countDead][0], this.ghostDeadArray[this.countDead][1], 37, 45, this.x, this.y, 29.6, 36);
+      this.vx *= 0;
+    }
+  }
+}
+
+class Sensei extends Mob {
+  constructor(game) {
+    super(game);
+    this.speed;
+    this.x = -50;
+    this.y = 70;
+    this.sensei = new Image();
+    this.sensei.src = './images/mobs/sensei.png';
+  }
+
+  //37x45
+  draw() {
+    this.context.drawImage(this.sensei, this.x, 70, 16, 23);
+  }
+
+  drawDeath() {
+    this.vx *= 0;
+  }
+}

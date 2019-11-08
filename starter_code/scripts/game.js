@@ -17,6 +17,9 @@ class Game {
     this.width = $canvas.width;
     this.height = $canvas.height;
     this.player = new Player(this);
+    this.worm = new Worm(this);
+    this.fox = new Fox(this);
+    this.sensei = new Sensei(this);
     this.towerbuilder = new TowerBuilder(this);
     this.background = new Background(this);
     this.mob = new Mob(this);
@@ -77,6 +80,10 @@ class Game {
         enemy.draw();
       }
     }
+    this.sensei.draw();
+    this.worm.draw();
+    this.context.drawImage(this.background.tree, 490, 310, 53, 74);
+    this.fox.draw();
 
     if (this.mageTower.built) {
       this.mageTower.draw();
@@ -149,6 +156,8 @@ class Game {
         enemy.update();
       }
     }
+    this.worm.update();
+    this.fox.update();
 
     for (let enemy of this.enemies) {
       if (enemy.health <= 0 && !enemy.dead) {
@@ -192,11 +201,11 @@ class Game {
         this.player.loseLife();
       }
     }
-    console.log(timestamp);
     if (timestamp >= 10000) {
       this.higherLevel();
     }
-    if (timestamp >= 30000) {
+    if (timestamp >= 22000) {
+      this.sensei.x = 50;
       this.higherLevel2();
     }
     this.loopSound();
@@ -217,6 +226,8 @@ class Game {
     this.player.score = 0;
     this.context.clearRect(0, 0, 640, 384);
     this.enemies = [];
+    this.worm.x = -330;
+    this.fox.x = -100;
     this.blockButton = false;
     this.blockButton2 = false;
     this.blockButton3 = false;
@@ -235,6 +246,10 @@ class Game {
     this.tower.isInsideRadius2 = [];
     this.tower.isItBuilt = false;
     this.tower.isItBuiltPos2 = false;
+    this.mageTower.isItBuilt = false;
+    this.mageTower.isItBuiltPos2 = false;
+    this.cannonTower.isItBuilt = false;
+    this.cannonTower.isItBuiltPos2 = false;
     this.tower.upgraded = false;
     this.mageTower.built = false;
     this.mageTower.built2 = false;

@@ -39,7 +39,7 @@ class Background {
     this.context.drawImage(this.treasure, 200, 20, 25, 21);
     this.context.drawImage(this.tree, 90, 20, 53, 74);
     this.context.drawImage(this.tree, 470, 20, 53, 74);
-    this.context.drawImage(this.tree, 490, 310, 53, 74);
+    //this.context.drawImage(this.tree, 490, 310, 53, 74);
     this.context.drawImage(this.rock, 40, 295, 26, 15);
     this.context.drawImage(this.rock, 590, 320, 26, 15);
     this.context.drawImage(this.rod, 460, 320, 14, 33);
