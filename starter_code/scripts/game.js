@@ -266,6 +266,8 @@ class Game {
     document.getElementById('cannon2').disabled = false;
     //document.querySelector('main').classList.replace('game-playing', 'game-paused');
     //document.querySelector('button').classList.replace('canvas-time', 'start-game');
+    skelAttack.pause();
+    this.skelAttack = false;
     this.animation();
 
     //reset everything and then call for the animation loop
