@@ -12,38 +12,42 @@
       <div class="container">
         <canvas width="640" height="384"></canvas>
         <div id="game-area" class="menu">
-
           <div>
+            <h3>First Position</h3>
             <button id="mage1" class="tower-first ">Mage</button>
             <button id="cannon1" class="tower-second ">Cannon</button>
           </div>
-
-          <div>
-            <button id="mage2" class="tower-first2">Mage</button>
-            <button id="cannon2" class="tower-second2">Cannon</button>
-          </div>
-
           <div>
             <button id="mage-upgrade1" disabled>Upgrade Mage Tower</button>
             <button id="cannon-upgrade1" disabled>Upgrade Cannon Tower</button>
           </div>
 
           <div>
-            <button id="mage-upgrade2" disabled>Upgrade Mage Tower2</button>
-            <button id="cannon-upgrade2" disabled>Upgrade Cannon Tower2</button>
+            <h3>Second Position</h3>
+            <button id="mage2" class="tower-first2">Mage</button>
+            <button id="cannon2" class="tower-second2">Cannon</button>
+          </div>
+          <div>
+            <button id="mage-upgrade2" disabled>Upgrade Mage Tower</button>
+            <button id="cannon-upgrade2" disabled>Upgrade Cannon Tower</button>
           </div>
 
           <div>
-          <button id="start-wave" disabled>Start Wave</button>
+            <button id="start-wave" disabled>Start Wave</button>
           </div>
 
-      <div>
-        <button id="reset">Reset Game</button>
+          <div>
+            <button id="reset">Reset Game</button>
+          </div>
+        </div>
       </div>
-
-      </div>
-      <div>
+      <ul>
+        <li>Choose a tower to build. Either a Mage tower or a Cannon tower</li>
+        <li>Upgraded towers do more damage, they will be available at a specific score</li>
+        <li>Kill all the enemies before they kill you!</li>
+      </ul>
     </main>
+    <footer></footer>
     <script src="./scripts/player.js"></script>
     <script src="./scripts/towerbuilder.js"></script>
     <script src="./scripts/towers.js"></script>

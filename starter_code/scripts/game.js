@@ -32,6 +32,7 @@ class Game {
     this.over.src = './images/gameover.png';
 
     //this.isitDead;
+    this.gameStartTimestamp = null;
   }
 
   clear() {
@@ -59,6 +60,7 @@ class Game {
 
   waveStart() {
     this.waveStarted = true;
+    this.gameStartTimestamp = Date.now();
   }
 
   life() {
@@ -118,8 +120,8 @@ class Game {
     this.score();
   }
 
-  updateEverything(timestamp) {
-    console.log(this.frame);
+  updateEverything() {
+    const timestamp = this.gameStartTimestamp ? Date.now() - this.gameStartTimestamp : 0;
     this.tower.unlockTower2();
 
     if (this.waveStarted) {
@@ -178,6 +180,10 @@ class Game {
       this.cannonTower.built = false;
       this.cannonTower.attackFirst(this.cannonTower, this.cannonTower.damageUpgrade);
     }
+    if (this.cannonTower.builtUpgrade2) {
+      this.cannonTower.built2 = false;
+      this.cannonTower.attackSecond(this.cannonTower, this.cannonTower.damageUpgrade2);
+    }
 
     //check if enemy passes the end of the road
     for (let enemy of this.enemies) {
@@ -186,13 +192,21 @@ class Game {
         this.player.loseLife();
       }
     }
-    this.higherLevel();
+    console.log(timestamp);
+    if (timestamp >= 10000) {
+      this.higherLevel();
+    }
+    if (timestamp >= 30000) {
+      this.higherLevel2();
+    }
     this.loopSound();
   }
 
   gameOver() {
     window.cancelAnimationFrame(this.frame);
     delete this.frame;
+    this.frame = 0;
+    this.gameStartTimestamp = null;
     this.context.drawImage(this.over, 100, 50, 448, 268.8);
   }
 
@@ -207,10 +221,10 @@ class Game {
     this.blockButton2 = false;
     this.blockButton3 = false;
     this.blockButton4 = false;
-    this.batsPush = 0;
-    this.knightsPush = 0;
-    this.ghostsPush = 0;
-    this.skelsPush = 0;
+    this.batsPush = 4500;
+    this.knightsPush = 8500;
+    this.ghostsPush = 1500;
+    this.skelsPush = 15000;
     this.mobTimerSkels = 0;
     this.mobTimerBats = 0;
     this.mobTimerKnights = 0;
@@ -223,7 +237,7 @@ class Game {
     this.tower.isItBuiltPos2 = false;
     this.tower.upgraded = false;
     this.mageTower.built = false;
-    this.mageTower.buil2 = false;
+    this.mageTower.built2 = false;
     this.mageTower.builtUpgrade = false;
     this.mageTower.builtUpgrade2 = false;
     this.cannonTower.built = false;
@@ -252,16 +266,17 @@ class Game {
   }
 
   higherLevel() {
-    if (this.frame >= 800 && this.frame < 1500) {
-      this.skelsPush = 5000;
-      this.batsPush = 2500;
-      this.knightsPush = 3500;
-      this.ghostsPush = 1000;
-    } else if (this.frame >= 1500) {
-      this.skelAttack = true;
-      mainSound.pause();
-      skelAttack.play();
-      this.skelsPush = 500;
-    }
+    this.skelsPush = 5000;
+    this.batsPush = 2500;
+    this.knightsPush = 3500;
+    this.ghostsPush = 1000;
+  }
+
+  higherLevel2() {
+    this.skelAttack = true;
+    mainSound.pause();
+    skelAttack.play();
+    this.batsPush = 800;
+    this.skelsPush = 1500;
   }
 }
